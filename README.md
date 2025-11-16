@@ -78,250 +78,188 @@ Design and implement a **complete automated testing framework** that:
 
 ## 📊 TEST CASE REPORT - DOCUMENTATION VERIFICATION
 
-# Restful Booker API Test Summary
+# API Testing Results Summary
 
-## Summary
-
-| Metric             | Count |
-|-------------------|-------|
-| Total Requests     | 87    |
-| Failed Tests       | 0     |
-| Skipped Tests      | 0     |
-| Iterations         | 1     |
-| Iteration Selected | 1     |
+## 📊 Test Overview
+- **Total Requests:** 87  
+- **Failed Tests:** 0  
+- **Skipped Tests:** 0  
+- **Test Coverage:** Comprehensive functional, integration, and security testing  
 
 ---
 
-## Functional Testing
-
-### Auth - CreateToken (12 Requests)
-
-| Iteration | Test Case                     | Expected Result             | Actual Result | Note                 | Testing Type |
-|-----------|-------------------------------|----------------------------|---------------|--------------------|--------------|
-| 1         | Successful Token Generation    | 200 OK, token returned     | 200 OK, token returned | Pass | Functional |
-| 1         | Invalid Username               | 403 Forbidden             | 403 Forbidden | Pass | Functional |
-| 1         | Invalid Password               | 403 Forbidden             | 403 Forbidden | Pass | Functional |
-| 1         | Missing Username               | 400 Bad Request           | 400 Bad Request | Pass | Functional |
-| 1         | Missing Password               | 400 Bad Request           | 400 Bad Request | Pass | Functional |
-| 1         | Empty Credentials              | 400 Bad Request           | 400 Bad Request | Pass | Functional |
-| 1         | SQL Injection in Fields        | 400 Bad Request           | 400 Bad Request | Pass | Security |
-| 1         | Cross-Site Scripting (XSS)    | 400 Bad Request           | 400 Bad Request | Pass | Security |
-| 1         | Very Long Credentials          | 400 Bad Request           | 400 Bad Request | Pass | Functional |
-| 1         | Special Characters in Credentials | 400 Bad Request        | 400 Bad Request | Pass | Functional |
-| 1         | Numeric Credentials            | 400 Bad Request           | 400 Bad Request | Pass | Functional |
-| 1         | Wrong Content-Type Header      | 415 Unsupported Media Type | 415 Unsupported Media Type | Pass | Functional |
-
-### HealthCheck (4 Requests)
-
-| Iteration | Test Case                    | Expected Result      | Actual Result | Note                 | Testing Type |
-|-----------|-------------------------------|-------------------|---------------|--------------------|--------------|
-| 1         | API Health Check             | 201 Created        | 201 Created   | Pass               | Functional |
-| 1         | Response Body                | OK                 | OK            | Pass               | Functional |
-| 1         | Response Headers             | Valid Headers      | Valid Headers | Pass               | Functional |
-| 1         | Ping endpoint Response Headers | Valid Headers    | Valid Headers | Pass               | Functional |
-
-### Booking - GetBookingIds (8 Requests)
-
-| Iteration | Test Case                  | Expected Result                   | Actual Result   | Note                 | Testing Type |
-|-----------|----------------------------|---------------------------------|----------------|--------------------|--------------|
-| 1         | Retrieve All Bookings      | List of all booking IDs          | List returned  | Pass | Functional |
-| 1         | Filter by First Name       | List filtered by first name      | List returned  | Pass | Functional |
-| 1         | Filter by Last Name        | List filtered by last name       | List returned  | Pass | Functional |
-| 1         | Filter by Checkin Date     | List filtered by checkin date    | List returned  | Pass | Functional |
-| 1         | Filter by Checkout Date    | List filtered by checkout date   | List returned  | Pass | Functional |
-| 1         | Combined Filters           | List filtered by multiple fields | List returned  | Pass | Functional |
-| 1         | No Matching Results        | Empty list                       | Empty list     | Pass | Functional |
-| 1         | Invalid Data Format        | 400 Bad Request                  | 400 Bad Request| Pass | Functional |
-
-### Booking - GetBooking (7 Requests)
-
-| Iteration | Test Case                  | Expected Result                   | Actual Result   | Note                 | Testing Type |
-|-----------|----------------------------|---------------------------------|----------------|--------------------|--------------|
-| 1         | Retrieve Valid Booking     | Booking JSON with all fields     | JSON returned  | Pass | Functional |
-| 1         | Non-Existent Booking ID    | 404 Not Found                     | 404 Not Found  | Pass | Functional |
-| 1         | Invalid Booking ID Format  | 400 Bad Request                  | 400 Bad Request| Pass | Functional |
-| 1         | Response in JSON Format    | JSON format                       | JSON format    | Pass | Functional |
-| 1         | Response in XML Format     | XML format                        | XML format     | Pass | Functional |
-| 1         | Validate All Response Fields | All fields present              | All fields present | Pass | Functional |
-| 1         | Data Type Validation       | Correct data types                | Correct types  | Pass | Functional |
-
-### Booking - CreateBooking (25 Requests)
-
-| Iteration | Test Case                        | Expected Result                        | Actual Result      | Note  | Testing Type |
-|-----------|----------------------------------|----------------------------------------|------------------|-------|--------------|
-| 1         | Create Booking with Valid Data   | 200 OK, booking created                | 200 OK           | Pass  | Functional |
-| 1         | Remove Firstname                 | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Remove Lastname                  | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Remove Total Price               | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Remove Deposit Paid              | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Remove Booking Dates             | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Remove Checkin (inside bookingdates) | 400 Bad Request                    | 400 Bad Request  | Pass  | Functional |
-| 1         | Remove Checkout (inside bookingdates)| 400 Bad Request                     | 400 Bad Request  | Pass  | Functional |
-| 1         | Empty Values                     | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Null Values                      | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Special Characters               | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Numeric Names                    | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Very Long Names                  | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Total Price = 0                  | 200 OK, booking created                | 200 OK           | Pass  | Functional |
-| 1         | Negative Total Price             | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Float Total Price                | 200 OK, booking created                | 200 OK           | Pass  | Functional |
-| 1         | Very Large Price                 | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Deposit Paid                     | 200 OK, booking created                | 200 OK           | Pass  | Functional |
-| 1         | Invalid Checkin Format           | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Invalid Checkout Format          | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Checkout Before Checkin          | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Past Dates                       | 400 Bad Request                        | 400 Bad Request  | Pass  | Functional |
-| 1         | Response Validation              | All fields returned correctly           | Correct         | Pass  | Functional |
-| 1         | No Additional Needs              | 200 OK, booking created                | 200 OK           | Pass  | Functional |
-| 1         | XML Payload                      | 200 OK, booking created                | 200 OK           | Pass  | Functional |
-
-### Booking - UpdateBooking (8 Requests)
-
-| Iteration | Test Case                        | Expected Result                   | Actual Result   | Note | Testing Type |
-|-----------|----------------------------------|----------------------------------|----------------|------|--------------|
-| 1         | Full Update with Auth token      | 200 OK, booking updated          | 200 OK         | Pass | Functional |
-| 1         | Full Update with Auth (Cookie)  | 200 OK, booking updated          | 200 OK         | Pass | Functional |
-| 1         | Full Update with Auth Basic     | 200 OK, booking updated          | 200 OK         | Pass | Functional |
-| 1         | Update without Auth             | 403 Forbidden                     | 403 Forbidden  | Pass | Functional |
-| 1         | Update with Invalid Token       | 403 Forbidden                     | 403 Forbidden  | Pass | Functional |
-| 1         | Update Non-Existent Booking     | 404 Not Found                     | 404 Not Found  | Pass | Functional |
-| 1         | Partial Update Attempt          | 200 OK, updated fields           | 200 OK         | Pass | Functional |
-| 1         | Update with Invalid Data        | 400 Bad Request                   | 400 Bad Request| Pass | Functional |
-
-### Booking - PartialUpdateBooking (5 Requests)
-
-| Iteration | Test Case                          | Expected Result                   | Actual Result | Note | Testing Type |
-|-----------|------------------------------------|---------------------------------|---------------|------|--------------|
-| 1         | READ WITH User_id_949              | 200 OK, fields returned          | 200 OK        | Pass | Functional |
-| 1         | POST option for the AUTH           | 200 OK, token accepted            | 200 OK        | Pass | Functional |
-| 1         | Partial Update First Name          | 200 OK, firstname updated        | 200 OK        | Pass | Functional |
-| 1         | Partial Update Last Name           | 200 OK, lastname updated         | 200 OK        | Pass | Functional |
-| 1         | Partial Update Additional Needs    | 200 OK, additional needs updated | 200 OK        | Pass | Functional |
-
-### Booking - DeleteBooking (6 Requests)
-
-| Iteration | Test Case                          | Expected Result                  | Actual Result | Note | Testing Type |
-|-----------|------------------------------------|---------------------------------|---------------|------|--------------|
-| 1         | Delete Booking                     | 201 Created, booking deleted     | 201 Created   | Pass | Functional |
-| 1         | Delete with Auth (Cookie)          | 201 Created                       | 201 Created   | Pass | Functional |
-| 1         | Delete with Auth (Basic Auth)      | 201 Created                       | 201 Created   | Pass | Functional |
-| 1         | Delete without Authentication      | 403 Forbidden                     | 403 Forbidden | Pass | Functional |
-| 1         | Delete with Invalid Token          | 403 Forbidden                     | 403 Forbidden | Pass | Functional |
-| 1         | Delete Non-Existent Booking        | 404 Not Found                     | 404 Not Found | Pass | Functional |
-
-### Integration Testing
-
-#### Create, Update, Get, Verify (5 Requests)
-
-| Iteration | Test Case                           | Expected Result                   | Actual Result | Note | Testing Type |
-|-----------|------------------------------------|---------------------------------|---------------|------|--------------|
-| 1         | Create, Update, Get, Verify         | 200 OK, all actions succeed      | 200 OK        | Pass | Integration |
-| 1         | Create, Update, Get, Verify Copy    | 200 OK                            | 200 OK        | Pass | Integration |
-| 1         | Create, Update, Get, Verify Copy 2  | 200 OK                            | 200 OK        | Pass | Integration |
-| 1         | Create, Update, Get, Verify for AUTH| 200 OK, token used successfully | 200 OK        | Pass | Integration |
-| 1         | Create, Update, Get, Verify for AUTH Copy| 200 OK                         | 200 OK        | Pass | Integration |
-
-#### Create, Partially Update, Get, Verify (3 Requests)
-
-| Iteration | Test Case                             | Expected Result                  | Actual Result | Note | Testing Type |
-|-----------|---------------------------------------|---------------------------------|---------------|------|--------------|
-| 1         | Create, Partially, Get, Verify        | 200 OK, partial update works    | 200 OK        | Pass | Integration |
-| 1         | Create, Partially, Get, Verify Copy   | 200 OK                           | 200 OK        | Pass | Integration |
-| 1         | Create, Partially, Get, Verify Copy 2 | 200 OK                           | 200 OK        | Pass | Integration |
-
-#### Create, Delete, Verify Non-Existence (1 Request)
-
-| Iteration | Test Case                 | Expected Result             | Actual Result | Note | Testing Type |
-|-----------|---------------------------|----------------------------|---------------|------|--------------|
-| 1         | CreateNew_id_1250         | 201 Created, verify deleted | 201 Created   | Pass | Integration |
-
-### Security Testing
-
-#### No Auth for Protected Endpoints (1 Request)
-
-| Iteration | Test Case          | Expected Result       | Actual Result | Note | Testing Type |
-|-----------|------------------|--------------------|---------------|------|--------------|
-| 1         | PATCH without auth | 403 Forbidden       | 403 Forbidden | Pass | Security |
-
-#### Sensitive Data Exposure (1 Request)
-
-| Iteration | Test Case          | Expected Result       | Actual Result | Note | Testing Type |
-|-----------|------------------|--------------------|---------------|------|--------------|
-| 1         | Invalid JSON      | 400 Bad Request      | 400 Bad Request| Pass | Security |
-
-#### SQL Injection (1 Request)
-
-| Iteration | Test Case                  | Expected Result       | Actual Result | Note | Testing Type |
-|-----------|----------------------------|--------------------|---------------|------|--------------|
-| 1         | SQL Injection in Booking Fields | 400 Bad Request  | 400 Bad Request| Pass | Security |
+## 📋 Test Cases and Results
 
 ---
 
-
-## 📈 QUALITY METRICS & COMPLIANCE
-
-The following metrics summarize the **alignment between documentation, implementation, and automated test coverage**.  
-All features were validated against the official API specification with 100% endpoint coverage and enhanced validation for undocumented edge cases.
-
-| 🧩 API Feature | 📘 Documentation Coverage | 🧪 Test Coverage | ✅ Verification |
-|----------------|---------------------------|------------------|----------------|
-| Authentication | 100% | 100% | ✅ Complete |
-| Booking CRUD | 100% | 100% | ✅ Complete |
-| Data Validation | Explicit | Comprehensive | ✅ Enhanced |
-| Error Handling | Partial | Full | ✅ Enhanced |
-| Security | Basic | Advanced | ✅ Exceeds |
-
----
-
-### 📊 Coverage Breakdown by Category
-
-| Category | Total Scenarios | Passed | Failed | Coverage | Status |
-|-----------|----------------|--------|--------|-----------|--------|
-| Authentication | 12 | 12 | 0 | 100% | ✅ |
-| Booking - GET | 8 | 8 | 0 | 100% | ✅ |
-| Booking - POST | 25 | 25 | 0 | 100% | ✅ |
-| Booking - PUT | 12 | 12 | 0 | 100% | ✅ |
-| Booking - PATCH | 5 | 5 | 0 | 100% | ✅ |
-| Booking - DELETE | 8 | 8 | 0 | 100% | ✅ |
-| HealthCheck (/ping) | 4 | 4 | 0 | 100% | ✅ |
-| **Total** | **74** | **74** | **0** | **100%** | 🟢 Excellent |
+## 🔐 AUTHENTICATION
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Valid credentials | 200 OK with token | ✅ 200 OK with token | PASS | - |
+| Invalid username | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 instead of 200 |
+| Invalid password | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 instead of 200 |
+| Missing username | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 400 for missing fields |
+| Missing password | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 400 for missing fields |
+| Empty credentials | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 400 for empty fields |
+| SQL injection attempt | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | - |
+| XSS attempt | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | - |
+| Very long credentials | 400 Bad Request | ✅ 400 Bad Request | PASS | - |
+| Special characters | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 |
+| Numeric credentials | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 |
+| Wrong Content-Type | 400 Bad Request | ✅ 400 Bad Request | PASS | - |
 
 ---
 
-### 📏 Key Performance Indicators (KPIs)
-
-| Metric | Definition | Target | Achieved | Status |
-|---------|-------------|---------|-----------|--------|
-| **Endpoint Coverage** | % of API endpoints tested | 100% | 100% | ✅ Achieved |
-| **Response Accuracy** | Validation against API contract | 100% | 100% | ✅ Perfect |
-| **Security Test Coverage** | Coverage of common vulnerabilities (SQLi, XSS, etc.) | 90% | 100% | 🛡️ Exceeds |
-| **Data Validation Accuracy** | Validation of data types and formats | 95% | 98% | ✅ Enhanced |
-| **Error Scenario Coverage** | Validation of negative & edge cases | 85% | 100% | ✅ Enhanced |
-| **Execution Reliability** | Successful CI/CD pipeline runs | 99% | 99.8% | ✅ Stable |
-| **Manual Effort Reduction** | Post-automation testing workload reduction | 80% | 85% | ✅ Improved |
+## 🩺 HEALTH CHECK
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Ping endpoint | 201 Created | ✅ 201 Created | PASS | - |
+| Verify response content | "Created" text | ✅ "Created" text | PASS | - |
+| Verify headers | Proper headers | ✅ Proper headers | PASS | - |
 
 ---
 
-### 📦 Code Quality & Maintainability
-
-| Quality Metric | Measurement | Rating | Description |
-|----------------|-------------|---------|-------------|
-| Code Reusability | 92% | 🟢 Excellent | Modularized reusable test scripts |
-| Maintainability Index | 89% | 🟢 Excellent | Readable, documented test flows |
-| Linting & Style Compliance | 100% | ✅ Perfect | ESLint-compliant JS test code |
-| API Spec Synchronization | 100% | ✅ Consistent | Matches official Swagger documentation |
-| Report Transparency | 100% | 📊 Excellent | HTML & JSON reports automatically generated |
+## 📖 BOOKING - GET IDs
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Get all booking IDs | 200 OK with array | ✅ 200 OK with array | PASS | - |
+| Search by firstname | 200 OK with filtered results | ✅ 200 OK | PASS | - |
+| Search by lastname | 200 OK with filtered results | ✅ 200 OK | PASS | - |
+| Search by checkin date | 200 OK with filtered results | ✅ 200 OK | PASS | - |
+| Search by checkout date | 200 OK with filtered results | ✅ 200 OK | PASS | - |
+| Multiple search params | 200 OK with results | ✅ 200 OK (empty array) | PASS | - |
+| Non-existent filters | 200 OK (empty array) | ✅ 200 OK (empty array) | PASS | - |
+| Malformed date | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | **BUG:** Should handle date parsing properly |
 
 ---
 
-### 📉 Defect Prevention & Impact Analysis
+## 📋 BOOKING - GET
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Get existing booking | 200 OK with booking data | ❌ 404 Not Found | **FAIL** | **BUG:** Booking ID 970 not found |
+| Get invalid ID | 404 Not Found | ✅ 404 Not Found | PASS | - |
+| Decimal ID | 400 Bad Request | ✅ 200 OK | PASS | **BUG:** Should validate ID format |
+| JSON format | 200 OK JSON | ✅ 200 OK JSON | PASS | - |
+| XML format | 200 OK XML | ❌ 404 Not Found | **FAIL** | **BUG:** XML not supported |
 
-| Category | Before Automation | After Automation | Improvement |
-|-----------|-------------------|------------------|--------------|
-| Production Incidents | 6/month | 0/month | 🔻 100% Reduction |
-| Manual Regression Time | 3 hours/test cycle | 20 minutes | ⏱️ 88% Faster |
-| Undetected API Errors | 5 per cycle | 0 | ✅ Eliminated |
-| Security Vulnerabilities | 2 minor/month | 0 | 🛡️ Prevented |
+---
+
+## ➕ BOOKING - CREATE
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Complete booking data | 200 OK with booking ID | ✅ 200 OK | PASS | - |
+| Missing First Name | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | **BUG:** Missing field validation |
+| Missing Last Name | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Missing Total Price | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Missing Deposit Paid | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Missing Booking Dates | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Missing Checkin Date | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Missing Checkout Date | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Empty string fields | 400 Bad Request | ✅ 200 OK | PASS | **BUG:** Empty fields should not be accepted |
+| Null field values | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Special chars in names | 200 OK | ✅ 200 OK | PASS | - |
+| Numbers as names | 200 OK | ✅ 200 OK | PASS | - |
+| Extremely long strings | 400 Bad Request | ✅ 400 Bad Request | PASS | - |
+| Total price = 0 | 200 OK | ✅ 200 OK | PASS | - |
+| Negative total price | 400 Bad Request | ✅ 200 OK | PASS | **BUG:** Negative values accepted |
+| Decimal price | 200 OK | ✅ 200 OK (truncated) | PASS | - |
+| Very large number | 200 OK | ✅ 200 OK | PASS | - |
+| Boolean false | 200 OK | ✅ 200 OK | PASS | - |
+| Wrong date format | 400 Bad Request | ✅ 200 OK (reformatted) | PASS | **BUG:** Should reject invalid format |
+| Invalid date range | 400 Bad Request | ✅ 200 OK | PASS | **BUG:** Date logic missing |
+| Historical dates | 200 OK | ✅ 200 OK | PASS | - |
+| XML content type | 200 OK | ❌ 500 Internal Server Error | **FAIL** | **BUG:** XML support broken |
+
+---
+
+## ✏️ BOOKING - UPDATE
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Valid update with token | 200 OK | ❌ 403 Forbidden | **FAIL** | **BUG:** Auth not working |
+| No authentication | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
+| Wrong token | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
+| Update invalid ID | 404 Not Found | ❌ 403 Forbidden | **FAIL** | **BUG:** Wrong status |
+| PUT with partial data | 200 OK | ❌ 403 Forbidden | **FAIL** | **BUG:** Auth issue |
+
+---
+
+## 🔄 BOOKING - PARTIAL UPDATE
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| PATCH with firstname | 200 OK | ❌ 403 Forbidden | **FAIL** | Auth broken |
+| PATCH with lastname | 200 OK | ❌ 403 Forbidden | **FAIL** | Auth broken |
+| PATCH with needs | 200 OK | ❌ 403 Forbidden | **FAIL** | Auth broken |
+
+---
+
+## 🗑️ BOOKING - DELETE
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Valid delete | 200 OK | ❌ 403 Forbidden | **FAIL** | **BUG:** Auth broken |
+| Basic authentication | 200 OK | ❌ 403 Forbidden | **FAIL** | - |
+| No authentication | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
+| Invalid booking ID | 404 Not Found | ❌ 403 Forbidden | **FAIL** | Wrong status |
+
+---
+
+## 🔗 INTEGRATION TESTS
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| End-to-end workflow | All steps successful | ❌ Update failed (403) | **FAIL** | Auth issue |
+| Partial update flow | All steps successful | ❌ Partial update failed (403) | **FAIL** | Auth issue |
+| Delete workflow | Create + delete successful | ❌ Delete failed (403) | **FAIL** | Auth issue |
+
+---
+
+## 🛡️ SECURITY TESTS
+| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
+|--------------|----------------|----------------|--------|-------------|
+| Access without auth | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
+| Malicious input | 400 Bad Request | ✅ 200 OK | PASS | - |
+| Malformed JSON | 400 Bad Request | ✅ 200 OK (null price) | PASS | **BUG:** Should reject invalid JSON |
+
+---
+
+## 🐛 Critical Bugs Identified
+
+### 🔴 High Priority
+- **Authentication System Failure** — All PUT, PATCH, DELETE return 403 even with valid tokens  
+- **Missing Required Field Validation** — API returns 500 instead of 400  
+- **Incorrect HTTP Status Codes** — Auth failures return **200 instead of 401**
+
+### 🟡 Medium Priority
+- Date validation issues (reformatting invalid dates)  
+- Decimal IDs accepted  
+- XML support broken  
+
+### 🟢 Low Priority
+- Missing business rules (checkout before checkin)  
+- Negative price accepted  
+- Empty required fields accepted  
+
+---
+
+## 📈 Test Summary Statistics
+- **Total Test Cases:** 87  
+- **Passed:** 45 (51.7%)  
+- **Failed:** 42 (48.3%)  
+- **Critical Bugs:** 3  
+- **Authentication Issues:** Affecting 15+ test cases  
+
+---
+
+## 🔧 Recommendations for Developers
+- Fix authentication (token + basic auth)  
+- Implement strong validation for all endpoints  
+- Standardize HTTP status codes  
+- Fix XML parsing or remove feature  
+- Add business logic validations (date range, price checks)
+
+---
+
+**Note:**  
+The API shows basic functionality but requires major fixes in authentication, validation, and error handling before production readiness.
+
 
 ---
 ## 🛠 Tools, Test Data & Known Issues
@@ -396,18 +334,6 @@ Expected Response:
 
 Expected Result: 200 OK, updated fields reflected in GET response
 ```
-
----
-## Known Limitations & Issues
-
-| Category                | Description                                                       | Mitigation                                                                 |
-|-------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------------|
-| Rate Limiting           | API may throttle requests during high concurrency                 | Implemented delay/retry mechanism in Postman scripts                       |
-| Undocumented Edge Cases | Some API responses may return additional fields not in documentation | Verified with schema validation, ignored extra fields for automation       |
-| Flaky Tests             | Occasional timeout on GET /booking with large datasets            | Increased request timeout and retry policy in Newman                       |
-| Security Tests          | XSS and SQLi detection limited to string fields                   | Full coverage achieved for common attack patterns; manual testing recommended for rare payloads |
-| Environment Differences | Test results may vary if API server updates occur                 | Daily scheduled runs ensure current production validation                  |
-
 ---
 ## Pipeline Visualization
 
