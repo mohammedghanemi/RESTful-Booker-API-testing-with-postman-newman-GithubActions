@@ -1,23 +1,19 @@
 # 🧪 RESTful Booker API - Automated Testing Framework
 
 This project focuses on automated testing of the RESTful Booker API, which provides endpoints for authentication, booking management (CRUD), and health checks.
-Objective: Minimize errors, ensure data integrity, and provide continuous validation through CI/CD pipelines.
-This framework allows developers and testers to verify API behavior for positive, negative, and security scenarios such as SQL injection and XSS, achieving 100% endpoint coverage.
-Business value: Reduces manual testing, increases reliability, and ensures security compliance in production environments.
+
 
 ### About the API
 
 This project uses the **RESTful Booker API** as the target for automated testing and validation.  
 The API provides endpoints for **authentication**, **booking management (CRUD operations)**, and **health checks**.  
 All endpoints and request/response structures are documented at [RESTful Booker API Documentation](https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-PartialUpdateBooking).  
-The automated tests validate both standard and edge-case scenarios to ensure consistent behavior and reliability across environments.
 
 ---
 ### 🎯 STAR METHOD - PROJECT STORY
 
 #### **Situation**
 The **RESTful Booker API** required robust automated testing coverage across all endpoints — including **authentication**, **booking management**, and **health checks**.  
-Manual testing was **time-consuming**, **error-prone**, and lacked continuous validation.
 
 ---
 
@@ -224,8 +220,6 @@ Design and implement a **complete automated testing framework** that:
 - **Total Test Cases:** 87  
 - **Passed:** 45 (51.7%)  
 - **Failed:** 42 (48.3%)  
-- **Critical Bugs:** 3  
-- **Authentication Issues:** Affecting 15+ test cases  
 
 ---
 
