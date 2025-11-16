@@ -24,7 +24,7 @@ Manual testing was **time-consuming**, **error-prone**, and lacked continuous va
 #### **Task**
 Design and implement a **complete automated testing framework** that:
 
-- ✅ Covers **100% of API endpoints** documented in the official specification  
+- ✅ Covers **API endpoints** documented in the official specification  
 - ✅ Validates **positive and negative** scenarios  
 - ✅ Performs **security testing** for vulnerabilities  
 - ✅ Integrates with **CI/CD pipelines** for continuous assurance  
