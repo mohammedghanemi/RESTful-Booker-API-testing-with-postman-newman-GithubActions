@@ -80,20 +80,27 @@ Design and implement a **complete automated testing framework** that:
 ---
 
 ## 🔐 AUTHENTICATION
-| Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
-|--------------|----------------|----------------|--------|-------------|
-| Valid credentials | 200 OK with token | ✅ 200 OK with token | PASS | - |
-| Invalid username | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 instead of 200 |
-| Invalid password | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 instead of 200 |
-| Missing username | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 400 for missing fields |
-| Missing password | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 400 for missing fields |
-| Empty credentials | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 400 for empty fields |
-| SQL injection attempt | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | - |
-| XSS attempt | 400 Bad Request | ✅ 200 OK with "Bad credentials" | PASS | - |
-| Very long credentials | 400 Bad Request | ✅ 400 Bad Request | PASS | - |
-| Special characters | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 |
-| Numeric credentials | 401 Unauthorized | ✅ 200 OK with "Bad credentials" | PASS | **BUG:** Should return 401 |
-| Wrong Content-Type | 400 Bad Request | ✅ 400 Bad Request | PASS | - |
+
+| Test Scenario            | Expected Result            | Actual Result                         | Status | Notes / Bugs |
+|-------------------------|----------------------------|----------------------------------------|--------|--------------|
+| Valid credentials       | 200 OK with token          | ✅ 200 OK with token                    | PASS   | -            |
+| Invalid username        | 401 Unauthorized           | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 401 |
+| Invalid password        | 401 Unauthorized           | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 401 |
+| Missing username        | 400 Bad Request            | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 400 |
+| Missing password        | 400 Bad Request            | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 400 |
+| Empty credentials       | 400 Bad Request            | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 400 |
+| SQL injection attempt   | 400 Bad Request            | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Security risk → should return 400 |
+| XSS attempt             | 400 Bad Request            | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Security risk → should return 400 |
+| Very long credentials   | 400 Bad Request            | ✅ 400 Bad Request                      | PASS   | -            |
+| Special characters      | 401 Unauthorized           | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 401 |
+| Numeric credentials     | 401 Unauthorized           | ❌ 200 OK with "Bad credentials"        | FAIL   | **BUG:** Should return 401 |
+| Wrong Content-Type      | 400 Bad Request            | ✅ 400 Bad Request                      | PASS   | -            |
+
+🚨 Critical Issues Identified
+API always returns HTTP 200 even for errors
+No distinction between authentication failures and validation errors
+Security threats not properly handled
+Poor error response design
 
 ---
 
@@ -192,9 +199,9 @@ Design and implement a **complete automated testing framework** that:
 ## 🔗 INTEGRATION TESTS
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
-| End-to-end workflow | All steps successful | ❌ Update failed (403) | **FAIL** | Auth issue |
-| Partial update flow | All steps successful | ❌ Partial update failed (403) | **FAIL** | Auth issue |
-| Delete workflow | Create + delete successful | ❌ Delete failed (403) | **FAIL** | Auth issue |
+| End-to-end workflow | All steps successful |  All steps successful | PASS | - |
+| Partial update flow | All steps successful |  All steps successful | PASS | - |
+| Delete workflow | Create + delete successful |  All steps successful | PASS | - |
 
 ---
 
