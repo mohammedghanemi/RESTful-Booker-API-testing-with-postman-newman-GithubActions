@@ -135,13 +135,13 @@ Design and implement a **complete automated testing framework** that:
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
 | Complete booking data | 200 OK with booking ID | ✅ 200 OK | PASS | - |
-| Missing First Name | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | **BUG:** Missing field validation |
-| Missing Last Name | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
-| Missing Total Price | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
-| Missing Deposit Paid | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
-| Missing Booking Dates | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
-| Missing Checkin Date | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
-| Missing Checkout Date | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
+| Missing First Name | 400 Bad Request | 400 | PASS | - |
+| Missing Last Name | 400 Bad Request | 400 | PASS | - |
+| Missing Total Price | 400 Bad Request | 400 | PASS | - |
+| Missing Deposit Paid | 400 Bad Request | 400 | PASS | - |
+| Missing Booking Dates | 400 Bad Request | 400 | PASS | - |
+| Missing Checkin Date | 400 Bad Request | 400 | PASS | - |
+| Missing Checkout Date | 400 Bad Request | 400 | PASS | - |
 | Empty string fields | 400 Bad Request | ✅ 200 OK | PASS | **BUG:** Empty fields should not be accepted |
 | Null field values | 400 Bad Request | ❌ 500 Internal Server Error | **FAIL** | - |
 | Special chars in names | 200 OK | ✅ 200 OK | PASS | - |
@@ -162,20 +162,20 @@ Design and implement a **complete automated testing framework** that:
 ## ✏️ BOOKING - UPDATE
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
-| Valid update with token | 200 OK | ❌ 403 Forbidden | **FAIL** | **BUG:** Auth not working |
+| Valid update with token | 200 OK | ✅ 200 OK | PASS | - |
 | No authentication | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
 | Wrong token | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
-| Update invalid ID | 404 Not Found | ❌ 403 Forbidden | **FAIL** | **BUG:** Wrong status |
-| PUT with partial data | 200 OK | ❌ 403 Forbidden | **FAIL** | **BUG:** Auth issue |
+| Update invalid ID | 404 Not Found | 404 | PASS | - |
+| PUT with partial data | 200 OK | ✅ 200 OK | PASS | - |
 
 ---
 
 ## 🔄 BOOKING - PARTIAL UPDATE
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
-| PATCH with firstname | 200 OK | ❌ 403 Forbidden | **FAIL** | Auth broken |
-| PATCH with lastname | 200 OK | ❌ 403 Forbidden | **FAIL** | Auth broken |
-| PATCH with needs | 200 OK | ❌ 403 Forbidden | **FAIL** | Auth broken |
+| PATCH with firstname | 200 OK | ✅ 200 OK | PASS | - |
+| PATCH with lastname | 200 OK | ✅ 200 OK | PASS | - |
+| PATCH with needs | 200 OK | ✅ 200 OK | PASS | - |
 
 ---
 
@@ -202,8 +202,8 @@ Design and implement a **complete automated testing framework** that:
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
 | Access without auth | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
-| Malicious input | 400 Bad Request | ✅ 200 OK | PASS | - |
-| Malformed JSON | 400 Bad Request | ✅ 200 OK (null price) | PASS | **BUG:** Should reject invalid JSON |
+| Malicious input | 400 Bad Request | ❌ 200 OK | FAIL | BUG: Should reject malicious input |
+| Malformed JSON | 400 Bad Request | ❌ 200 OK (null price) | FAIL | **BUG:** Should reject invalid JSON |
   
 
 ---
