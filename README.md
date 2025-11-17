@@ -130,7 +130,7 @@ Poor error response design
 ## 📋 BOOKING - GET
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
-| Get existing booking | 200 OK with booking data | ❌ 404 Not Found | **FAIL** | **BUG:** Booking ID 970 not found |
+| Get existing booking | 200 OK with booking data | 200 | PASS | - |
 | Get invalid ID | 404 Not Found | ✅ 404 Not Found | PASS | - |
 | Decimal ID | 400 Bad Request | ✅ 200 OK | PASS | **BUG:** Should validate ID format |
 | JSON format | 200 OK JSON | ✅ 200 OK JSON | PASS | - |
@@ -189,8 +189,8 @@ Poor error response design
 ## 🗑️ BOOKING - DELETE
 | Test Scenario | Expected Result | Actual Result | Status | Notes/Bugs |
 |--------------|----------------|----------------|--------|-------------|
-| Valid delete | 200 OK | ❌ 403 Forbidden | **FAIL** | **BUG:** Auth broken |
-| Basic authentication | 200 OK | ❌ 403 Forbidden | **FAIL** | - |
+| Valid delete | 200 OK | ✅ 200 OK | PASS | - |
+| Basic authentication | 200 OK | ✅ 200 OK | PASS | - |
 | No authentication | 403 Forbidden | ✅ 403 Forbidden | PASS | - |
 | Invalid booking ID | 404 Not Found | ❌ 403 Forbidden | **FAIL** | Wrong status |
 
